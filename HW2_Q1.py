@@ -7,8 +7,6 @@ import torchvision.transforms as transforms
 from PyQt5.QtGui import QPixmap
 import numpy as np
 
-
-
 def initial(self):
     self.device=torch.device('cpu')
     self.model=torch.load("./vgg19_bn.pth", map_location=self.device)

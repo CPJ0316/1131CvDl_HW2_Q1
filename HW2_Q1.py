@@ -19,6 +19,12 @@ def initial(self):
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
     
+def show_label_image(self):
+    # 創建 QPixmap 物件
+    Q_img = QPixmap(self.img_path)
+    self.label_2.setPixmap(Q_img)
+    self.label_2.setScaledContents(True) 
+    
 def show_augmentation(image_paths,labels,transform):   
     augmentation_imgs=[]
     for path in image_paths:
@@ -77,10 +83,6 @@ def show_inference(self):
     prob_s = prob.squeeze().cpu().numpy()  # 去除 batch 維度並轉換為 numpy
     max_prob_index = np.argmax(prob_s) # 獲取最大機率的index
 
-    # 創建 QPixmap 物件
-    Q_img = QPixmap(self.img_path)
-    self.label_2.setPixmap(Q_img)
-    self.label_2.setScaledContents(True) 
     self.label_3.setText("Predicted= "+self.labels[max_prob_index])
     
     plt.figure(figsize=(10,6))

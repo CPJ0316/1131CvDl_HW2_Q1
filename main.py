@@ -51,6 +51,7 @@ class Main_UI(QMainWindow):
         else:
             self.img_path = img_path  
             print("Selected image:", self.img_path) 
+        HW2_Q1.show_label_image(self)
             
     def pushButton2F(self):
         folder_path = QFileDialog.getExistingDirectory(self, "Select Folder")

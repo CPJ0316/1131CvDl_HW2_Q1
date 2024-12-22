@@ -24,15 +24,15 @@ class Main_UI(QMainWindow):
 
 
     def Connect_btn(self):
-        self.pushButton.clicked.connect(self.pushButton1F)           #load file
-        self.pushButton_2.clicked.connect(self.pushButton2F)         #1. Show Augmented Images
-        self.pushButton_3.clicked.connect(self.pushButton3F)         #2. Show Model Structure
-        self.pushButton_4.clicked.connect(self.pushButton4F)         #3. Show Accuracy and Loss
-        self.pushButton_5.clicked.connect(self.pushButton5F)         #4. Inference
-        self.pushButton_6.clicked.connect(self.showMessage_wrong_btn)         #1. Show Training Images
-        self.pushButton_7.clicked.connect(self.showMessage_wrong_btn)         #2. Show Model Structure
-        self.pushButton_8.clicked.connect(self.showMessage_wrong_btn)         #3. Show Training Loss
-        self.pushButton_9.clicked.connect(self.showMessage_wrong_btn)    #4. Inference
+        self.pushButton.clicked.connect(self.pushButton1F)           
+        self.pushButton_2.clicked.connect(self.pushButton2F)         
+        self.pushButton_3.clicked.connect(self.pushButton3F)         
+        self.pushButton_4.clicked.connect(self.pushButton4F)         
+        self.pushButton_5.clicked.connect(self.pushButton5F)         
+        self.pushButton_6.clicked.connect(self.showMessage_wrong_btn)         
+        self.pushButton_7.clicked.connect(self.showMessage_wrong_btn)         
+        self.pushButton_8.clicked.connect(self.showMessage_wrong_btn)        
+        self.pushButton_9.clicked.connect(self.showMessage_wrong_btn)   
 
     
     def showMessage_wrong_btn(self):

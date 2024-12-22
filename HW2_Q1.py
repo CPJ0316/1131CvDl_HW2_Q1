@@ -29,8 +29,7 @@ def show_augmentation(image_paths,labels,transform):
     augmentation_imgs=[]
     for path in image_paths:
         image=Image.open(path).convert("RGB")
-        augmentation_img=transform(image)
-        augmentation_imgs.append(augmentation_img.permute(1, 2, 0).numpy())
+          
         #增強後的影像是 PyTorch 張量格式，需用 .permute(1, 2, 0) 將通道順序從 (C, H, W) 改為 (H, W, C)，然後轉為 NumPy 格式以供 Matplotlib 顯示。
     
     fig,axes =plt.subplots(3,3,figsize=(12,12))

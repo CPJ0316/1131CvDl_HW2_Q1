@@ -15,13 +15,12 @@ class Main_UI(QMainWindow):
         self.transform=None
         self.files=[]
         self.labels=['airplane', 'automobile', 'bird', 'cat','deer', 'dog', 'frog', 'horse', 'ship', 'truck']
-        self.acc="./vgg19_bn_acc.png"
-        self.loss="./vgg19_bn_loss.png"
+        self.acc="./vgg19_bn_ver2_acc.png"
+        self.loss="./vgg19_bn_ver2_loss.png"
         self.loadFiles=""
         self.img_path=""
         HW2_Q1.initial(self)
         self.Connect_btn()
-
 
     def Connect_btn(self):
         self.pushButton.clicked.connect(self.pushButton1F)           

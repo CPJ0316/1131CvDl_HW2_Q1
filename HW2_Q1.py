@@ -9,7 +9,15 @@ import numpy as np
 
 def initial(self):
     self.device=torch.device('cpu')
-    self.model=torch.load("./vgg19_bn.pth", map_location=self.device)
+    #self.model=torch.load("./vgg19_bn_ver2.pth", map_location=self.device)
+    model = models.vgg19_bn(num_classes=10)
+
+# 載入權重
+    model.load_state_dict(torch.load("./vgg19_bn_ver2.pth", map_location=self.device))
+
+# 移動到 CPU
+    self.model = model.to(self.device)
+    
     self.transform= transforms.Compose(
     [
     transforms.RandomHorizontalFlip(p=0.5),#隨機水平翻轉圖像，概率為0.5。
@@ -29,7 +37,8 @@ def show_augmentation(image_paths,labels,transform):
     augmentation_imgs=[]
     for path in image_paths:
         image=Image.open(path).convert("RGB")
-          
+        augmentation_img=transform(image)
+        augmentation_imgs.append(augmentation_img.permute(1, 2, 0).numpy())
         #增強後的影像是 PyTorch 張量格式，需用 .permute(1, 2, 0) 將通道順序從 (C, H, W) 改為 (H, W, C)，然後轉為 NumPy 格式以供 Matplotlib 顯示。
     
     fig,axes =plt.subplots(3,3,figsize=(12,12))
@@ -50,11 +59,13 @@ def show_augmentation(image_paths,labels,transform):
     plt.tight_layout()
     plt.show()    
     
-def show_structure(model): 
-    summary(model.to('cpu'), input_size=(3, 32, 32))
+def show_structure(self): 
+    #print(type(model))  # 打印類型
+    summary(self.model, input_size=(3, 32, 32), device=str(self.device))
+    #summary(model.to('cpu'), input_size=(3, 32, 32))
     
 def show_loss_acc(acc_path,loss_path):
-    fig,axes =plt.subplots(2,1,figsize=(12,12))
+    fig,axes =plt.subplots(2,1,figsize=(12,8))
     axes=axes.flatten()
     images=[]
     images.append(Image.open(acc_path).convert("RGB"))
@@ -63,8 +74,9 @@ def show_loss_acc(acc_path,loss_path):
         ax.imshow(images[i])
         ax.axis("off")
         
-    plt.tight_layout()
-    plt.show()    
+    plt.subplots_adjust(hspace=0.1)  # 調整子圖垂直間距
+    plt.tight_layout(pad=1.0)       # 進一步調整邊界與間距
+    plt.show()   
     
 def show_inference(self):
     #model = models.vgg19_bn(num_classes=10)

@@ -72,7 +72,7 @@ class Main_UI(QMainWindow):
         HW2_Q1.show_augmentation(self.files,augmentation_labels,self.transform)
         
     def pushButton3F(self):
-        HW2_Q1.show_structure(self.model)
+        HW2_Q1.show_structure(self)
 
     def pushButton4F(self):
         HW2_Q1.show_loss_acc(self.acc,self.loss)
